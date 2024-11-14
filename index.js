@@ -60,8 +60,8 @@ module.exports = function WarriorHelper(mod) {
   });
   mod.hook("S_ABNORMALITY_END", 1, (event) => {
     if (!enable) return;
-    if (event.id === TSTANCE && isTank) isTank = false;
-    if (event.id === OSTANCE && !isTank) isTank = true;
+    if (event.id === TSTANCE) isTank = false;
+    if (event.id === OSTANCE) isTank = true;
 
     if (event.target == gameId && event.id == 100811) {
       apex = false;
@@ -93,8 +93,7 @@ module.exports = function WarriorHelper(mod) {
       StartInstanceSkill(event);
     }
 
-    if(event.skill.id == BW_def){
-      if(!isTank) return;
+    if(event.skill.id == BW_def && isTank) {
       event.skill.id = BW_def;
       StartInstanceSkill(event);
     }
