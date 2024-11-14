@@ -88,10 +88,14 @@ module.exports = function WarriorHelper(mod) {
             StartInstanceSkill(event)
         } */
 
-    if (Math.floor(event.skill.id / 10000) == 40) {
-      if (isTank) event.skill.id = BW_def;
-      else event.skill.id = BW;
+    if (event.skill.id == BW) {
+      event.skill.id = BW;
+      StartInstanceSkill(event);
+    }
 
+    if(event.skill.id == BW_def){
+      if(!isTank) return;
+      event.skill.id = BW_def;
       StartInstanceSkill(event);
     }
 
@@ -102,13 +106,12 @@ module.exports = function WarriorHelper(mod) {
                     StartInstanceSkill(event)
                 } */
     if (Math.floor(event.skill.id / 10000) == 28) {
-        if(isTank) event.skill.id = TC_def;
-        else event.skill.id = TC;
+      event.skill.id = TC;
       StartInstanceSkill(event);
     }
 
     if (Math.floor(event.skill.id / 10000) == 39) {
-      if(isTank) event.skill.id = event.skill.id = TC_def;
+      if (isTank) event.skill.id = event.skill.id = TC_def;
       else event.skill.id = TC;
       StartInstanceSkill(event);
     }
